@@ -9,8 +9,8 @@ from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse
 from fastapi import status
 
-from plants import models, schemas, crud
-from plants.database import engine, SessionLocal
+from src.plants import models, schemas, crud
+from src.plants.database import engine, SessionLocal
 
 models.Base.metadata.create_all(bind=engine)
 
