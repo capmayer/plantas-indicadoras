@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String
-from .database import Base
 from slugify import slugify
+
+from src.plants.database import Base
 
 
 def slugify_name(context):

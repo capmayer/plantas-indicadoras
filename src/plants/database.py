@@ -4,10 +4,10 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 
 engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}  # check_same_thread is used only for sqlite.
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}  # check_same_thread is used only for sqlite.
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
