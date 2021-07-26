@@ -18,7 +18,7 @@ app = FastAPI()
 
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="src/templates")
 
 
 # Dependency
@@ -36,7 +36,7 @@ security = HTTPBasic()
 @app.get("/", response_class=HTMLResponse)
 async def homepage(request: Request, db: Session = Depends(get_db)):
     plants = crud.get_plants(db)
-    return templates.TemplateResponse("index.html", {"request": request, "plants": plants})
+    return templates.TemplateResponse("plants/index.html", {"request": request, "plants": plants})
 
 
 @app.get("/api/plants", response_model=List[schemas.Plant])
@@ -50,7 +50,7 @@ async def get_plant(scientific_name: str, request: Request, db: Session = Depend
     plant = crud.get_plant_by_name(db, scientific_name=scientific_name)
 
     if plant:
-        return templates.TemplateResponse("plant.html", {"request": request, "plant": plant})
+        return templates.TemplateResponse("plants/plant.html", {"request": request, "plant": plant})
     else:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Plant don't exist!")
 

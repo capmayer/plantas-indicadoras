@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from . import models, schemas
+from src.plants import models, schemas
 
 
 def get_plant(db: Session, plant_id: int):
